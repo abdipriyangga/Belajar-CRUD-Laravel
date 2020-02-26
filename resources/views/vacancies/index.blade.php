@@ -58,8 +58,13 @@
                                 <td>{{ $x -> rentangGaji }}</td>
                                 <td>{{ $x -> requirementSkill }}</td>
                                 <td>
-                                    <a href="" class="badge badge-success">Edit</a>
-                                    <a href="" class="badge badge-danger">Hapus</a>
+                                    <a href="{{ url('/vacancies') }}/{{$x->id}}/edit" class="btn btn-success">Edit</a>
+                                    
+                                    <form action="{{ url('/vacancies') }}/{{ $x->id }} " method="post" class=" d-inline">
+                                        @method('delete')
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach

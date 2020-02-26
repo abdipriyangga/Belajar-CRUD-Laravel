@@ -15,8 +15,12 @@ Route::get('/', 'HomeController@index');
 
 // Vacancies
 Route::get('/vacancies', 'VacanciesController@index');
+//Route::get('/vacancies/{vacancies}', 'VacanciesController@show');
 Route::get('/vacancies/create', 'VacanciesController@create');
 Route::post('/vacancies', 'VacanciesController@store');
+Route::delete('/vacancies/{vacancies}', 'VacanciesController@destroy');
+Route::get('/vacancies/{vacancies}/edit', 'VacanciesController@edit');
+Route::put('/vacancies/{vacancies}', 'VacanciesController@update');
 // Route::post('/vacancies', 'VacanciesController@store');
 
 // Skills

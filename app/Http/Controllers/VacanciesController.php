@@ -80,7 +80,7 @@ class VacanciesController extends Controller
      */
     public function show(Vacancies $vacancies)
     {
-        //
+        
     }
 
     /**
@@ -91,7 +91,11 @@ class VacanciesController extends Controller
      */
     public function edit(Vacancies $vacancies)
     {
-        //
+        $data = ['title' => 'Edit Vacancies | Data',
+                 'pageTitle' => 'Edit Vacancies',
+                 'subPageNav' => 'Data',
+                 'subPageTitle' => 'Edit Data Vacancies'];
+        return view('vacancies.edit', $data , compact('vacancies'));
     }
 
     /**
@@ -103,7 +107,22 @@ class VacanciesController extends Controller
      */
     public function update(Request $request, Vacancies $vacancies)
     {
-        //
+        $request->validate([
+            'lokasi' => 'required',
+            'type' => 'required',
+            'type' => 'required',
+            'durasi' => 'required',
+            'rentangGaji' => 'required',
+            'requirementSkill' => 'required',
+        ]);
+       Vacancies::where('id', $vacancies->id)
+                ->update(['lokasi'=> $request->lokasi,
+                          'type' => $request->type,
+                          'durasi' => $request->durasi,
+                          'rentangGaji' => $request->rentangGaji,
+                          'requirementSkill' => $request->requirementSkill
+                        ]);
+        return redirect('/vacancies')->with('pesan', 'Data Vacancies Berhasil Diedit!');
     }
 
     /**
@@ -114,6 +133,9 @@ class VacanciesController extends Controller
      */
     public function destroy(Vacancies $vacancies)
     {
-        //
+        // $vacancies = Vacancies::find($vacancies);
+        // $vacancies->delete();
+        Vacancies::destroy($vacancies->id);
+        return redirect('/vacancies')->with('pesan', 'Data Vacancies Berhasil Dihapus!');
     }
 }
