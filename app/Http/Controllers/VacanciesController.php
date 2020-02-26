@@ -133,8 +133,6 @@ class VacanciesController extends Controller
      */
     public function destroy(Vacancies $vacancies)
     {
-        // $vacancies = Vacancies::find($vacancies);
-        // $vacancies->delete();
         Vacancies::destroy($vacancies->id);
         return redirect('/vacancies')->with('pesan', 'Data Vacancies Berhasil Dihapus!');
     }
